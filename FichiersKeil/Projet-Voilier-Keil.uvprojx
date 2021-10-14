@@ -10,6 +10,7 @@
       <TargetName>Simulation</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -338,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\FichiersCode\Drivers</IncludePath>
+              <IncludePath>..\FichiersCode\Drivers\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -391,6 +392,18 @@
         </Group>
         <Group>
           <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>Driver_Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\Driver_Timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_GPIO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\Driver_GPIO.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -733,7 +746,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\FichiersCode\Drivers</IncludePath>
+              <IncludePath>..\FichiersCode\Drivers\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -786,6 +799,18 @@
         </Group>
         <Group>
           <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>Driver_Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\Driver_Timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_GPIO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\Driver_GPIO.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
