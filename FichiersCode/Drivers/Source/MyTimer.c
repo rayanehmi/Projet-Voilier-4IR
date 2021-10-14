@@ -1,5 +1,5 @@
 #include "stm32f10x.h"
-#include "Driver_Timer.h"
+#include "MyTimer.h"
 
 
 // 4 pointeurs pour les 4 timers

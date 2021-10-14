@@ -394,14 +394,19 @@
           <GroupName>Drivers</GroupName>
           <Files>
             <File>
-              <FileName>Driver_Timer.c</FileName>
+              <FileName>MyGPIO.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\FichiersCode\Drivers\Source\Driver_Timer.c</FilePath>
+              <FilePath>..\FichiersCode\Drivers\Source\MyGPIO.c</FilePath>
             </File>
             <File>
-              <FileName>Driver_GPIO.c</FileName>
+              <FileName>MyTimer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\FichiersCode\Drivers\Source\Driver_GPIO.c</FilePath>
+              <FilePath>..\FichiersCode\Drivers\Source\MyTimer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyUART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\MyUART.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -801,14 +806,19 @@
           <GroupName>Drivers</GroupName>
           <Files>
             <File>
-              <FileName>Driver_Timer.c</FileName>
+              <FileName>MyGPIO.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\FichiersCode\Drivers\Source\Driver_Timer.c</FilePath>
+              <FilePath>..\FichiersCode\Drivers\Source\MyGPIO.c</FilePath>
             </File>
             <File>
-              <FileName>Driver_GPIO.c</FileName>
+              <FileName>MyTimer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\FichiersCode\Drivers\Source\Driver_GPIO.c</FilePath>
+              <FilePath>..\FichiersCode\Drivers\Source\MyTimer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyUART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\MyUART.c</FilePath>
             </File>
           </Files>
         </Group>
