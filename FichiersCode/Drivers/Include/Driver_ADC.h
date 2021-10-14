@@ -23,7 +23,7 @@ void MyADC_Init(ADC_TypeDef * ADC) ;
 // Fonction de configuration -> Fonctionnement en mode continuous uniquement
 void MyADC_Config(ADC_TypeDef * ADC, unsigned char sampleTime, char channel) ; 
 
-// Fonction start
-void MyADC_Start(ADC_TypeDef * ADC) ; 
+// Macro start
+#define MyADC_Start(ADC) (ADC->CR2 |= 0x1)
 
 #endif 
