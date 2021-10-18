@@ -63,10 +63,9 @@ void USART3_IRQHandler ( void ){
 void MyUART_PutStr ( USART_TypeDef * UART, char* String){
 	// While in all the String
 	while(*String != '\0'){
-		while(!UART->SR & (1 << 7));
-		
-		UART->DR &=~ (0xFF);
-		UART->DR |= (char)*String; 
+		while(!(UART->SR & USART_SR_TXE));
+
+		UART->DR = *String; 
 		String++;
 	}
 }
