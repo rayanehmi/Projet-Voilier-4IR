@@ -1,11 +1,10 @@
 #include "../Include/MyGPIO.h"
 
 void MyGPIO_Init ( MyGPIO_Struct_TypeDef * GPIOStructPtr ) { //page 112
-	// Enable clock (HERE NOT):
-	//if ( GPIOStructPtr->GPIO == GPIOA) RCC->APB2ENR |= (0x01 << 2);
-	//else if ( GPIOStructPtr->GPIO == GPIOB) RCC->APB2ENR |= (0x01 << 3);
-	//else if ( GPIOStructPtr->GPIO == GPIOC) RCC->APB2ENR |= (0x01 << 4);
-	//else if ( GPIOStructPtr->GPIO == GPIOD) RCC->APB2ENR |= (0x01 << 5);
+	if ( GPIOStructPtr->GPIO == GPIOA) RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
+	else if ( GPIOStructPtr->GPIO == GPIOB) RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
+	else if ( GPIOStructPtr->GPIO == GPIOC) RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
+	else if ( GPIOStructPtr->GPIO == GPIOD) RCC->APB2ENR |= RCC_APB2ENR_IOPDEN;
 	
 	// Configure it (page 171):
 	if (GPIOStructPtr->GPIO_Pin < 8) { //We use CRL in this case

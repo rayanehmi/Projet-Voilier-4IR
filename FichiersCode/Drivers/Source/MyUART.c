@@ -1,24 +1,38 @@
 #include "../Include/MyUART.h"
+#include "MyGPIO.h"
 
 // Pointeurs de l'UART
 void (* pFuncUART1) (void);
 void (* pFuncUART3) (void);
 
 void MyUART_Init ( MyUART_Struct_TypeDef * UARTStructPtr ) 
-{
+{	
+	MyGPIO_Struct_TypeDef gpio;
+	
+	// Enable Clock
+	if(UARTStructPtr->UART == USART1){
+		RCC->APB2ENR |= RCC_APB2ENR_USART1EN; //Clock Enable
+		UARTStructPtr -> UART -> BRR |= (int) 72000000/(UARTStructPtr->UART_BaudRate); // Baud Rate 72 MHZ
+		
+		gpio.GPIO = GPIOA;
+		gpio.GPIO_Pin = 9;
+
+	}else if (UARTStructPtr->UART == USART3){
+		RCC->APB1ENR |= RCC_APB1ENR_USART3EN; //Clock Enable
+		UARTStructPtr -> UART -> BRR |= (int) 36000000/(UARTStructPtr->UART_BaudRate); // Baud Rate 36 MHZ
+
+		gpio.GPIO = GPIOC;
+		gpio.GPIO_Pin = 10;
+  }
+	
+	gpio.GPIO_Conf = AltOut_Ppull;
+	MyGPIO_Init(&gpio);
 	UARTStructPtr -> UART -> CR1 |= USART_CR1_UE ; //enable USART
 	UARTStructPtr -> UART -> CR1 &=~ USART_CR1_M ; //set M bit to 0 -> parity disabled
 	UARTStructPtr -> UART -> CR2 &=~ USART_CR2_STOP; //Set STOP to 00 -> 1 stop bit
-	//Set baud rate
-	if (UARTStructPtr -> UART == USART1) { //f = 72MHz
-		UARTStructPtr -> UART -> BRR |= (int) 72000000/(UARTStructPtr->UART_BaudRate);
-	}
-	else if (UARTStructPtr -> UART == USART3) { //f = 36MHz
-		UARTStructPtr -> UART -> BRR |= (int) 36000000/(UARTStructPtr->UART_BaudRate);
-	}
-	UARTStructPtr -> UART -> CR1 |= USART_CR1_TE; //send idle frame
-	UARTStructPtr -> UART -> CR1 |= USART_CR1_RE; //enable receiver
 	
+	UARTStructPtr -> UART -> CR1 |= USART_CR1_TE; //send idle frame	
+	UARTStructPtr -> UART -> CR1 |= USART_CR1_RE; //enable receiver
 }
 
 void MyUART_ActiveIT(USART_TypeDef * UART , char Prio , void (*IT_function)(void) ) {
@@ -49,7 +63,14 @@ void USART3_IRQHandler ( void ){
 void MyUART_PutStr ( USART_TypeDef * UART, char* String){
 	// While in all the String
 	while(*String != '\0'){
-		UART->DR = (int)*String; 
+		while(!UART->SR & (1 << 7));
+		
+		UART->DR &=~ (0xFF);
+		UART->DR |= (char)*String; 
 		String++;
 	}
+}
+
+char MyUART_GetChar ( USART_TypeDef * UART ){
+	return (char) UART->DR; 
 }
