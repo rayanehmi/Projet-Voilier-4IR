@@ -17,11 +17,10 @@ typedef struct
 } MyADC_Struct_TypeDef ; 
 */ 
 
-// Fonction d'initialisation 
-void MyADC_Init(ADC_TypeDef * ADC) ;
 
-// Fonction de configuration -> Fonctionnement en mode continuous uniquement
-void MyADC_Config(ADC_TypeDef * ADC, unsigned char sampleTime, char channel) ; 
+// Fonction d'initialisation -> Fonctionnement en mode continuous uniquement
+// Valeurs possibles pour sample Time : 1.5, 7.5, 13.5, 28.5, 41.5, 55.5, 71.5, 239.5
+void MyADC_Init(ADC_TypeDef * ADC, float sampleTime, char channel) ; 
 
 // Macro start
 #define MyADC_Start(ADC) (ADC->CR2 |= 0x1)
