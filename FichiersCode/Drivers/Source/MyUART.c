@@ -36,11 +36,12 @@ void MyUART_Init ( MyUART_Struct_TypeDef * UARTStructPtr )
 }
 
 void MyUART_ActiveIT(USART_TypeDef * UART , char Prio , void (*IT_function)(void) ) {
+	UART->CR1 |= USART_CR1_RXNEIE;
 	if (UART == USART1){
 		  NVIC_EnableIRQ(USART1_IRQn);
       NVIC_SetPriority(USART1_IRQn,Prio);
 			pFuncUART1 = IT_function;
-	}else if(UART == USART3){
+	}else if(UART == USART3){	
 			NVIC_EnableIRQ(USART3_IRQn);
       NVIC_SetPriority(USART3_IRQn,Prio);
 		  pFuncUART3 = IT_function;
