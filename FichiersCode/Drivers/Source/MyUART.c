@@ -36,6 +36,7 @@ void MyUART_Init ( MyUART_Struct_TypeDef * UARTStructPtr )
 }
 
 void MyUART_ActiveIT(USART_TypeDef * UART , char Prio , void (*IT_function)(void) ) {
+	UART->CR1 |= USART_CR1_RXNEIE;
 	if (UART == USART1){
 		  NVIC_EnableIRQ(USART1_IRQn);
       NVIC_SetPriority(USART1_IRQn,Prio);
