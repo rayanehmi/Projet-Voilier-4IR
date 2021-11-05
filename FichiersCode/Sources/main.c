@@ -1,21 +1,20 @@
 #include "stm32f10x.h"
 #include "MyUART.h"
 #include "MyGPIO.h"
-MyGPIO_Struct_TypeDef gpio;
-MyUART_Struct_TypeDef uart;
-char test;
+#include "MyTimer.h"
 
-void Callback(){
-	test = MyUART_GetChar(uart.UART);
-}
+MyTimer_Struct_TypeDef timer;
 
 int main(void){
-	uart.UART = USART1;
-	uart.UART_BaudRate = 9600;
+	timer.TimId = TIM2;
+	timer.ARR = 1435;
+	timer.PSC = 1;
 	
-	MyUART_Init(&uart);
-	MyUART_ActiveIT(uart.UART, 1, Callback);
+	TIM2->SMCR &=~ (TIM_SMCR_SMS);
+	TIM2->SMCR |= TIM_SMCR_SMS_0;
+	TIM2->SMCR |= TIM_SMCR_SMS_1;
 	
-	MyUART_PutStr(uart.UART, "ssstringgg");
+	MyTimer_Base_Init(&timer);
+	MyTimer_Base_Start(timer.TimId);
 	while(1);
 }

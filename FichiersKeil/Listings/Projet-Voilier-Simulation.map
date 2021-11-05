@@ -6,10 +6,11 @@ Section Cross References
 
     main.o(i.Callback) refers to myuart.o(i.MyUART_GetChar) for MyUART_GetChar
     main.o(i.Callback) refers to main.o(.data) for uart
+    main.o(i.main) refers to mygpio.o(i.MyGPIO_Init) for MyGPIO_Init
     main.o(i.main) refers to myuart.o(i.MyUART_Init) for MyUART_Init
     main.o(i.main) refers to myuart.o(i.MyUART_ActiveIT) for MyUART_ActiveIT
     main.o(i.main) refers to myuart.o(i.MyUART_PutStr) for MyUART_PutStr
-    main.o(i.main) refers to main.o(.data) for uart
+    main.o(i.main) refers to main.o(.data) for gpio
     main.o(i.main) refers to main.o(i.Callback) for Callback
     mytimer.o(i.MyTimer_ActiveIT) refers to mytimer.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
     mytimer.o(i.MyTimer_ActiveIT) refers to mytimer.o(i.__NVIC_SetPriority) for __NVIC_SetPriority
@@ -302,31 +303,31 @@ Image Symbol Table
     .text                                    0x08000240   Section        2  use_no_semi.o(.text)
     .text                                    0x08000242   Section        0  indicate_semi.o(.text)
     i.Callback                               0x08000244   Section        0  main.o(i.Callback)
-    i.MyGPIO_Init                            0x0800026c   Section        0  mygpio.o(i.MyGPIO_Init)
-    i.MyUART_ActiveIT                        0x0800035c   Section        0  myuart.o(i.MyUART_ActiveIT)
-    i.MyUART_GetChar                         0x080003b0   Section        0  myuart.o(i.MyUART_GetChar)
-    i.MyUART_Init                            0x080003b8   Section        0  myuart.o(i.MyUART_Init)
-    i.MyUART_PutStr                          0x08000484   Section        0  myuart.o(i.MyUART_PutStr)
-    i.SetSysClock                            0x080004a0   Section        0  system_stm32f10x.o(i.SetSysClock)
-    SetSysClock                              0x080004a1   Thumb Code     8  system_stm32f10x.o(i.SetSysClock)
-    i.SetSysClockTo72                        0x080004a8   Section        0  system_stm32f10x.o(i.SetSysClockTo72)
-    SetSysClockTo72                          0x080004a9   Thumb Code   214  system_stm32f10x.o(i.SetSysClockTo72)
-    i.SystemInit                             0x08000588   Section        0  system_stm32f10x.o(i.SystemInit)
-    i.TIM1_UP_IRQHandler                     0x080005e8   Section        0  mytimer.o(i.TIM1_UP_IRQHandler)
-    i.TIM2_IRQHandler                        0x0800060c   Section        0  mytimer.o(i.TIM2_IRQHandler)
-    i.TIM3_IRQHandler                        0x08000630   Section        0  mytimer.o(i.TIM3_IRQHandler)
-    i.TIM4_IRQHandler                        0x08000654   Section        0  mytimer.o(i.TIM4_IRQHandler)
-    i.USART1_IRQHandler                      0x08000678   Section        0  myuart.o(i.USART1_IRQHandler)
-    i.USART3_IRQHandler                      0x0800068c   Section        0  myuart.o(i.USART3_IRQHandler)
-    i.__NVIC_EnableIRQ                       0x080006a0   Section        0  myuart.o(i.__NVIC_EnableIRQ)
-    __NVIC_EnableIRQ                         0x080006a1   Thumb Code    34  myuart.o(i.__NVIC_EnableIRQ)
-    i.__NVIC_SetPriority                     0x080006c4   Section        0  myuart.o(i.__NVIC_SetPriority)
-    __NVIC_SetPriority                       0x080006c5   Thumb Code    32  myuart.o(i.__NVIC_SetPriority)
-    i.main                                   0x080006ec   Section        0  main.o(i.main)
-    .data                                    0x20000000   Section       24  main.o(.data)
-    .data                                    0x20000018   Section       16  mytimer.o(.data)
-    .data                                    0x20000028   Section        8  myuart.o(.data)
-    .bss                                     0x20000030   Section       96  libspace.o(.bss)
+    i.MyGPIO_Init                            0x0800025c   Section        0  mygpio.o(i.MyGPIO_Init)
+    i.MyUART_ActiveIT                        0x0800034c   Section        0  myuart.o(i.MyUART_ActiveIT)
+    i.MyUART_GetChar                         0x080003a0   Section        0  myuart.o(i.MyUART_GetChar)
+    i.MyUART_Init                            0x080003a8   Section        0  myuart.o(i.MyUART_Init)
+    i.MyUART_PutStr                          0x08000474   Section        0  myuart.o(i.MyUART_PutStr)
+    i.SetSysClock                            0x08000490   Section        0  system_stm32f10x.o(i.SetSysClock)
+    SetSysClock                              0x08000491   Thumb Code     8  system_stm32f10x.o(i.SetSysClock)
+    i.SetSysClockTo72                        0x08000498   Section        0  system_stm32f10x.o(i.SetSysClockTo72)
+    SetSysClockTo72                          0x08000499   Thumb Code   214  system_stm32f10x.o(i.SetSysClockTo72)
+    i.SystemInit                             0x08000578   Section        0  system_stm32f10x.o(i.SystemInit)
+    i.TIM1_UP_IRQHandler                     0x080005d8   Section        0  mytimer.o(i.TIM1_UP_IRQHandler)
+    i.TIM2_IRQHandler                        0x080005fc   Section        0  mytimer.o(i.TIM2_IRQHandler)
+    i.TIM3_IRQHandler                        0x08000620   Section        0  mytimer.o(i.TIM3_IRQHandler)
+    i.TIM4_IRQHandler                        0x08000644   Section        0  mytimer.o(i.TIM4_IRQHandler)
+    i.USART1_IRQHandler                      0x08000668   Section        0  myuart.o(i.USART1_IRQHandler)
+    i.USART3_IRQHandler                      0x0800067c   Section        0  myuart.o(i.USART3_IRQHandler)
+    i.__NVIC_EnableIRQ                       0x08000690   Section        0  myuart.o(i.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x08000691   Thumb Code    34  myuart.o(i.__NVIC_EnableIRQ)
+    i.__NVIC_SetPriority                     0x080006b4   Section        0  myuart.o(i.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x080006b5   Thumb Code    32  myuart.o(i.__NVIC_SetPriority)
+    i.main                                   0x080006dc   Section        0  main.o(i.main)
+    .data                                    0x20000000   Section       17  main.o(.data)
+    .data                                    0x20000014   Section       16  mytimer.o(.data)
+    .data                                    0x20000024   Section        8  myuart.o(.data)
+    .bss                                     0x2000002c   Section       96  libspace.o(.bss)
     HEAP                                     0x20000090   Section      512  startup_stm32f10x_md.o(HEAP)
     Heap_Mem                                 0x20000090   Data         512  startup_stm32f10x_md.o(HEAP)
     STACK                                    0x20000290   Section     1024  startup_stm32f10x_md.o(STACK)
@@ -480,34 +481,33 @@ Image Symbol Table
     __I$use$semihosting                      0x08000241   Thumb Code     0  use_no_semi.o(.text)
     __use_no_semihosting_swi                 0x08000241   Thumb Code     2  use_no_semi.o(.text)
     __semihosting_library_function           0x08000243   Thumb Code     0  indicate_semi.o(.text)
-    Callback                                 0x08000245   Thumb Code    26  main.o(i.Callback)
-    MyGPIO_Init                              0x0800026d   Thumb Code   218  mygpio.o(i.MyGPIO_Init)
-    MyUART_ActiveIT                          0x0800035d   Thumb Code    68  myuart.o(i.MyUART_ActiveIT)
-    MyUART_GetChar                           0x080003b1   Thumb Code     8  myuart.o(i.MyUART_GetChar)
-    MyUART_Init                              0x080003b9   Thumb Code   176  myuart.o(i.MyUART_Init)
-    MyUART_PutStr                            0x08000485   Thumb Code    28  myuart.o(i.MyUART_PutStr)
-    SystemInit                               0x08000589   Thumb Code    78  system_stm32f10x.o(i.SystemInit)
-    TIM1_UP_IRQHandler                       0x080005e9   Thumb Code    28  mytimer.o(i.TIM1_UP_IRQHandler)
-    TIM2_IRQHandler                          0x0800060d   Thumb Code    32  mytimer.o(i.TIM2_IRQHandler)
-    TIM3_IRQHandler                          0x08000631   Thumb Code    28  mytimer.o(i.TIM3_IRQHandler)
-    TIM4_IRQHandler                          0x08000655   Thumb Code    28  mytimer.o(i.TIM4_IRQHandler)
-    USART1_IRQHandler                        0x08000679   Thumb Code    16  myuart.o(i.USART1_IRQHandler)
-    USART3_IRQHandler                        0x0800068d   Thumb Code    16  myuart.o(i.USART3_IRQHandler)
-    main                                     0x080006ed   Thumb Code    44  main.o(i.main)
-    Region$$Table$$Base                      0x08000730   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08000750   Number         0  anon$$obj.o(Region$$Table)
+    Callback                                 0x08000245   Thumb Code    16  main.o(i.Callback)
+    MyGPIO_Init                              0x0800025d   Thumb Code   218  mygpio.o(i.MyGPIO_Init)
+    MyUART_ActiveIT                          0x0800034d   Thumb Code    68  myuart.o(i.MyUART_ActiveIT)
+    MyUART_GetChar                           0x080003a1   Thumb Code     8  myuart.o(i.MyUART_GetChar)
+    MyUART_Init                              0x080003a9   Thumb Code   176  myuart.o(i.MyUART_Init)
+    MyUART_PutStr                            0x08000475   Thumb Code    28  myuart.o(i.MyUART_PutStr)
+    SystemInit                               0x08000579   Thumb Code    78  system_stm32f10x.o(i.SystemInit)
+    TIM1_UP_IRQHandler                       0x080005d9   Thumb Code    28  mytimer.o(i.TIM1_UP_IRQHandler)
+    TIM2_IRQHandler                          0x080005fd   Thumb Code    32  mytimer.o(i.TIM2_IRQHandler)
+    TIM3_IRQHandler                          0x08000621   Thumb Code    28  mytimer.o(i.TIM3_IRQHandler)
+    TIM4_IRQHandler                          0x08000645   Thumb Code    28  mytimer.o(i.TIM4_IRQHandler)
+    USART1_IRQHandler                        0x08000669   Thumb Code    16  myuart.o(i.USART1_IRQHandler)
+    USART3_IRQHandler                        0x0800067d   Thumb Code    16  myuart.o(i.USART3_IRQHandler)
+    main                                     0x080006dd   Thumb Code    56  main.o(i.main)
+    Region$$Table$$Base                      0x08000734   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08000754   Number         0  anon$$obj.o(Region$$Table)
     gpio                                     0x20000000   Data           8  main.o(.data)
     uart                                     0x20000008   Data           8  main.o(.data)
     test                                     0x20000010   Data           1  main.o(.data)
-    count                                    0x20000014   Data           4  main.o(.data)
-    pFuncTIM1                                0x20000018   Data           4  mytimer.o(.data)
-    pFuncTIM2                                0x2000001c   Data           4  mytimer.o(.data)
-    pFuncTIM3                                0x20000020   Data           4  mytimer.o(.data)
-    pFuncTIM4                                0x20000024   Data           4  mytimer.o(.data)
-    pFuncUART1                               0x20000028   Data           4  myuart.o(.data)
-    pFuncUART3                               0x2000002c   Data           4  myuart.o(.data)
-    __libspace_start                         0x20000030   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20000090   Data           0  libspace.o(.bss)
+    pFuncTIM1                                0x20000014   Data           4  mytimer.o(.data)
+    pFuncTIM2                                0x20000018   Data           4  mytimer.o(.data)
+    pFuncTIM3                                0x2000001c   Data           4  mytimer.o(.data)
+    pFuncTIM4                                0x20000020   Data           4  mytimer.o(.data)
+    pFuncUART1                               0x20000024   Data           4  myuart.o(.data)
+    pFuncUART3                               0x20000028   Data           4  myuart.o(.data)
+    __libspace_start                         0x2000002c   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x2000008c   Data           0  libspace.o(.bss)
 
 
 
@@ -519,7 +519,7 @@ Memory Map of the image
 
   Load Region LR_1 (Base: 0x08000000, Size: 0x00000780, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000750, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000754, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -582,42 +582,44 @@ Memory Map of the image
     0x08000240   0x08000240   0x00000002   Code   RO          433    .text               c_w.l(use_no_semi.o)
     0x08000242   0x08000242   0x00000000   Code   RO          435    .text               c_w.l(indicate_semi.o)
     0x08000242   0x08000242   0x00000002   PAD
-    0x08000244   0x08000244   0x00000028   Code   RO            4    i.Callback          main.o
-    0x0800026c   0x0800026c   0x000000f0   Code   RO           72    i.MyGPIO_Init       mygpio.o
-    0x0800035c   0x0800035c   0x00000054   Code   RO          209    i.MyUART_ActiveIT   myuart.o
-    0x080003b0   0x080003b0   0x00000008   Code   RO          210    i.MyUART_GetChar    myuart.o
-    0x080003b8   0x080003b8   0x000000cc   Code   RO          211    i.MyUART_Init       myuart.o
-    0x08000484   0x08000484   0x0000001c   Code   RO          212    i.MyUART_PutStr     myuart.o
-    0x080004a0   0x080004a0   0x00000008   Code   RO          286    i.SetSysClock       system_stm32f10x.o
-    0x080004a8   0x080004a8   0x000000e0   Code   RO          287    i.SetSysClockTo72   system_stm32f10x.o
-    0x08000588   0x08000588   0x00000060   Code   RO          289    i.SystemInit        system_stm32f10x.o
-    0x080005e8   0x080005e8   0x00000024   Code   RO          126    i.TIM1_UP_IRQHandler  mytimer.o
-    0x0800060c   0x0800060c   0x00000024   Code   RO          127    i.TIM2_IRQHandler   mytimer.o
-    0x08000630   0x08000630   0x00000024   Code   RO          128    i.TIM3_IRQHandler   mytimer.o
-    0x08000654   0x08000654   0x00000024   Code   RO          129    i.TIM4_IRQHandler   mytimer.o
-    0x08000678   0x08000678   0x00000014   Code   RO          213    i.USART1_IRQHandler  myuart.o
-    0x0800068c   0x0800068c   0x00000014   Code   RO          214    i.USART3_IRQHandler  myuart.o
-    0x080006a0   0x080006a0   0x00000022   Code   RO          215    i.__NVIC_EnableIRQ  myuart.o
-    0x080006c2   0x080006c2   0x00000002   PAD
-    0x080006c4   0x080006c4   0x00000028   Code   RO          216    i.__NVIC_SetPriority  myuart.o
-    0x080006ec   0x080006ec   0x00000044   Code   RO            5    i.main              main.o
-    0x08000730   0x08000730   0x00000020   Data   RO          490    Region$$Table       anon$$obj.o
+    0x08000244   0x08000244   0x00000018   Code   RO            4    i.Callback          main.o
+    0x0800025c   0x0800025c   0x000000f0   Code   RO           72    i.MyGPIO_Init       mygpio.o
+    0x0800034c   0x0800034c   0x00000054   Code   RO          209    i.MyUART_ActiveIT   myuart.o
+    0x080003a0   0x080003a0   0x00000008   Code   RO          210    i.MyUART_GetChar    myuart.o
+    0x080003a8   0x080003a8   0x000000cc   Code   RO          211    i.MyUART_Init       myuart.o
+    0x08000474   0x08000474   0x0000001c   Code   RO          212    i.MyUART_PutStr     myuart.o
+    0x08000490   0x08000490   0x00000008   Code   RO          286    i.SetSysClock       system_stm32f10x.o
+    0x08000498   0x08000498   0x000000e0   Code   RO          287    i.SetSysClockTo72   system_stm32f10x.o
+    0x08000578   0x08000578   0x00000060   Code   RO          289    i.SystemInit        system_stm32f10x.o
+    0x080005d8   0x080005d8   0x00000024   Code   RO          126    i.TIM1_UP_IRQHandler  mytimer.o
+    0x080005fc   0x080005fc   0x00000024   Code   RO          127    i.TIM2_IRQHandler   mytimer.o
+    0x08000620   0x08000620   0x00000024   Code   RO          128    i.TIM3_IRQHandler   mytimer.o
+    0x08000644   0x08000644   0x00000024   Code   RO          129    i.TIM4_IRQHandler   mytimer.o
+    0x08000668   0x08000668   0x00000014   Code   RO          213    i.USART1_IRQHandler  myuart.o
+    0x0800067c   0x0800067c   0x00000014   Code   RO          214    i.USART3_IRQHandler  myuart.o
+    0x08000690   0x08000690   0x00000022   Code   RO          215    i.__NVIC_EnableIRQ  myuart.o
+    0x080006b2   0x080006b2   0x00000002   PAD
+    0x080006b4   0x080006b4   0x00000028   Code   RO          216    i.__NVIC_SetPriority  myuart.o
+    0x080006dc   0x080006dc   0x00000058   Code   RO            5    i.main              main.o
+    0x08000734   0x08000734   0x00000020   Data   RO          490    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08000750, Size: 0x00000030, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x08000750   0x00000018   Data   RW            6    .data               main.o
-    0x20000018   0x08000768   0x00000010   Data   RW          133    .data               mytimer.o
-    0x20000028   0x08000778   0x00000008   Data   RW          217    .data               myuart.o
-
-
-    Execution Region ER_ZI (Exec base: 0x20000030, Load base: 0x08000780, Size: 0x00000660, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08000754, Size: 0x0000002c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000030        -       0x00000060   Zero   RW          362    .bss                c_w.l(libspace.o)
+    0x20000000   0x08000754   0x00000011   Data   RW            6    .data               main.o
+    0x20000011   0x08000765   0x00000003   PAD
+    0x20000014   0x08000768   0x00000010   Data   RW          133    .data               mytimer.o
+    0x20000024   0x08000778   0x00000008   Data   RW          217    .data               myuart.o
+
+
+    Execution Region ER_ZI (Exec base: 0x2000002c, Load base: 0x08000780, Size: 0x00000664, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x2000002c        -       0x00000060   Zero   RW          362    .bss                c_w.l(libspace.o)
+    0x2000008c   0x08000780   0x00000004   PAD
     0x20000090        -       0x00000200   Zero   RW          277    HEAP                startup_stm32f10x_md.o
     0x20000290        -       0x00000400   Zero   RW          276    STACK               startup_stm32f10x_md.o
 
@@ -629,7 +631,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       108         38          0         24          0     208741   main.o
+       112         40          0         17          0     208711   main.o
        240         22          0          0          0       1606   mygpio.o
        144         28          0         16          0       3445   mytimer.o
        438         60          0          8          0       5765   myuart.o
@@ -637,9 +639,9 @@ Image component sizes
        328         28          0          0          0       2053   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-      1324        202        268         48       1536     222442   Object Totals
+      1328        204        268         44       1536     222412   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         2          0          0          0          0          0   (incl. Padding)
+         2          0          0          3          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -667,8 +669,8 @@ Image component sizes
          2          0          0          0          0         68   use_no_semi.o
 
     ----------------------------------------------------------------------
-       280         16          0          0         96        584   Library Totals
-         8          0          0          0          0          0   (incl. Padding)
+       280         16          0          0        100        584   Library Totals
+         8          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -677,7 +679,7 @@ Image component sizes
        272         16          0          0         96        584   c_w.l
 
     ----------------------------------------------------------------------
-       280         16          0          0         96        584   Library Totals
+       280         16          0          0        100        584   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -686,13 +688,13 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1604        218        268         48       1632     222086   Grand Totals
-      1604        218        268         48       1632     222086   ELF Image Totals
-      1604        218        268         48          0          0   ROM Totals
+      1608        220        268         44       1636     222056   Grand Totals
+      1608        220        268         44       1636     222056   ELF Image Totals
+      1608        220        268         44          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1872 (   1.83kB)
+    Total RO  Size (Code + RO Data)                 1876 (   1.83kB)
     Total RW  Size (RW Data + ZI Data)              1680 (   1.64kB)
     Total ROM Size (Code + RO Data + RW Data)       1920 (   1.88kB)
 

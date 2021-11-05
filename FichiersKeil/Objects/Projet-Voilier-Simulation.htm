@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Projet-Voilier-Simulation.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Projet-Voilier-Simulation.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Nov 05 13:43:08 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Nov 05 14:25:37 2021
 <BR><P>
 <H3>Maximum Stack Usage =         28 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -456,7 +456,7 @@ Global Symbols
 
 <P><STRONG><a name="[83]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3a]"></a>Callback</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, main.o(i.Callback))
+<P><STRONG><a name="[3a]"></a>Callback</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, main.o(i.Callback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Callback
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUART_GetChar
@@ -465,6 +465,7 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[54]"></a>MyGPIO_Init</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, mygpio.o(i.MyGPIO_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUART_Init
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[50]"></a>MyUART_ActiveIT</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, myuart.o(i.MyUART_ActiveIT))
@@ -529,12 +530,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[47]"></a>main</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[47]"></a>main</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = main &rArr; MyUART_ActiveIT &rArr; __NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUART_PutStr
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUART_Init
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUART_ActiveIT
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyGPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
