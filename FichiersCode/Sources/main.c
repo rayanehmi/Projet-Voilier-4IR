@@ -21,9 +21,9 @@ void Callback(){
 
 		//Traitement
 		//if (int)controllerData != vitesseRotationPlateau) //If the command changed
-			vitesseRotationPlateau = (signed int)controllerData;
+			vitesseRotationPlateau = (signed char)controllerData;
 			//Commande
-			if (vitesseRotationPlateau>0) {
+			if ( vitesseRotationPlateau >= 0)  {
 				MyGPIO_Set(GPIOB,5);
 				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
 				MyTimer_Base_Start(TIM4);
@@ -64,9 +64,10 @@ int main(void){
 	/* Partie rotation plateau*/
 	
 	MyTimer_PWM(TIM4,3);
-	
+
 	while(1){
-		
+		int a = 0;
+		a = a + 1;
 	}
 	
 }
