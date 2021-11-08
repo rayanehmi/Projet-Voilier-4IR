@@ -1,14 +1,13 @@
 #include "stm32f10x.h"
-#include "Driver_ADC.h"
+#include "MyADC.h"
 
 // Fonction d'initialisation 
 void MyADC_Init(ADC_TypeDef * ADC, float sampleTime, char channel) {
+	RCC->CFGR |= RCC_CFGR_ADCPRE_DIV6 ; 
 	if (ADC == ADC1) {
 		// Clock = 
-		RCC->CFGR |= RCC_CFGR_ADCPRE_DIV6 ; 
 		RCC->APB2ENR |= RCC_APB2ENR_ADC1EN ;
 	} else if (ADC == ADC2) {
-		RCC->CFGR |= RCC_CFGR_ADCPRE_DIV6 ; 
 		RCC->APB2ENR |= RCC_APB2ENR_ADC2EN ; 
 	}
 	
@@ -61,7 +60,10 @@ void MyADC_Init(ADC_TypeDef * ADC, float sampleTime, char channel) {
 	// Configuration mode continu
 	// Continuous mode set
 	ADC->CR2 |= 0x1 << 1;
+
 }
 
-
+int MyADC_Get(ADC_TypeDef * ADC){
+		return (int) ADC->DR;
+	}
 
