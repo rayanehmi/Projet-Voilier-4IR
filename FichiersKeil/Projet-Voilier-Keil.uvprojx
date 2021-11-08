@@ -412,13 +412,6 @@
         </Group>
         <Group>
           <GroupName>Fonctionnalites</GroupName>
-          <Files>
-            <File>
-              <FileName>cap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FichiersCode\Fonctionnalites\Source\cap.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -834,13 +827,6 @@
         </Group>
         <Group>
           <GroupName>Fonctionnalites</GroupName>
-          <Files>
-            <File>
-              <FileName>cap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FichiersCode\Fonctionnalites\Source\cap.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
