@@ -408,7 +408,15 @@
               <FileType>1</FileType>
               <FilePath>..\FichiersCode\Drivers\Source\MyUART.c</FilePath>
             </File>
+            <File>
+              <FileName>MyADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\MyADC.c</FilePath>
+            </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>Fonctionnalites</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -820,7 +828,15 @@
               <FileType>1</FileType>
               <FilePath>..\FichiersCode\Drivers\Source\MyUART.c</FilePath>
             </File>
+            <File>
+              <FileName>MyADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Drivers\Source\MyADC.c</FilePath>
+            </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>Fonctionnalites</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

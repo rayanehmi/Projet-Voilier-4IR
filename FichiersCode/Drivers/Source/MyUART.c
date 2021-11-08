@@ -72,5 +72,5 @@ void MyUART_PutStr ( USART_TypeDef * UART, char* String){
 }
 
 char MyUART_GetChar ( USART_TypeDef * UART ){
-	return (char) UART->DR; 
+	return (signed char) UART->DR; 
 }
