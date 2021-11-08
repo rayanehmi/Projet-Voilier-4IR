@@ -181,13 +181,13 @@ void MyTimer_Base_Init(MyTimer_Struct_TypeDef * Timer){
 	void setCycle_PWM(TIM_TypeDef * Timer, char Channel, int cycle) {
 		
 		if (Channel == 1) {
-			Timer->CCR1 = (Timer->ARR + 1)* cycle/100 ; 
+			Timer->CCR1 = ((Timer->ARR + 1)* cycle)/100 ; 
 		} else if (Channel==2) {
-			Timer->CCR2 = (Timer->ARR + 1)* cycle/100 ; 
+			Timer->CCR2 = ((Timer->ARR + 1)* cycle)/100 ; 
 		} else if (Channel==3) {
-			Timer->CCR3 = (Timer->ARR + 1)* cycle/100 ; 
+			Timer->CCR3 = ((Timer->ARR + 1)* cycle)/100 ; 
 		} else if (Channel==4) {
-			Timer->CCR4 = (Timer->ARR + 1)* cycle/100 ; 
+			Timer->CCR4 = ((Timer->ARR + 1)* cycle)/100 ; 
 		}
 }
 

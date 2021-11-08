@@ -411,6 +411,9 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Fonctionnalites</GroupName>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
@@ -821,6 +824,9 @@
               <FilePath>..\FichiersCode\Drivers\Source\MyUART.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>Fonctionnalites</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
