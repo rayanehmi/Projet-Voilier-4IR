@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Projet-Voilier-Simulation.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Projet-Voilier-Simulation.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Nov 08 18:07:51 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Nov 09 20:23:16 2021
 <BR><P>
 <H3>Maximum Stack Usage =         28 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -37,7 +37,7 @@ Function Pointers
  <LI><a href="#[7]">BusFault_Handler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[22]">CAN1_RX1_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[23]">CAN1_SCE_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
- <LI><a href="#[3a]">Callback</a> from main.o(i.Callback) referenced from main.o(i.main)
+ <LI><a href="#[3a]">Callback2</a> from main.o(i.Callback2) referenced from main.o(i.main)
  <LI><a href="#[18]">DMA1_Channel1_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[19]">DMA1_Channel2_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[1a]">DMA1_Channel3_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
@@ -456,8 +456,8 @@ Global Symbols
 
 <P><STRONG><a name="[87]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3a]"></a>Callback</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, main.o(i.Callback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Callback &rArr; setCycle_PWM
+<P><STRONG><a name="[3a]"></a>Callback2</STRONG> (Thumb, 130 bytes, Stack size 8 bytes, main.o(i.Callback2))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Callback2 &rArr; setCycle_PWM
 </UL>
 <BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCycle_PWM
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUART_GetChar
@@ -472,11 +472,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[52]"></a>MyGPIO_Reset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, mygpio.o(i.MyGPIO_Reset))
-<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback2
 </UL>
 
 <P><STRONG><a name="[50]"></a>MyGPIO_Set</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, mygpio.o(i.MyGPIO_Set))
-<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback2
 </UL>
 
 <P><STRONG><a name="[5a]"></a>MyTimer_Base_Init</STRONG> (Thumb, 100 bytes, Stack size 0 bytes, mytimer.o(i.MyTimer_Base_Init))
@@ -497,7 +497,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4f]"></a>MyUART_GetChar</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, myuart.o(i.MyUART_GetChar))
-<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback2
 </UL>
 
 <P><STRONG><a name="[56]"></a>MyUART_Init</STRONG> (Thumb, 176 bytes, Stack size 16 bytes, myuart.o(i.MyUART_Init))
@@ -560,7 +560,7 @@ Global Symbols
 <P><STRONG><a name="[51]"></a>setCycle_PWM</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, mytimer.o(i.setCycle_PWM))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = setCycle_PWM
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback2
 </UL>
 <P>
 <H3>
