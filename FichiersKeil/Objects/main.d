@@ -10,3 +10,5 @@
 .\objects\main.o: ..\FichiersCode\Drivers\Include\MyUART.h
 .\objects\main.o: ..\FichiersCode\Drivers\Include\MyGPIO.h
 .\objects\main.o: ..\FichiersCode\Drivers\Include\MyTimer.h
+.\objects\main.o: ..\FichiersCode\Drivers\Include\MyADC.h
+.\objects\main.o: C:\Users\rayte\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h
