@@ -2,7 +2,7 @@
 #include "MyUART.h"
 #include "MyGPIO.h"
 #include "MyTimer.h"
-#define ACCELMAX 10
+#define ACCELMAX 7 //70% par sec
 
 MyGPIO_Struct_TypeDef gpioPB8;
 MyGPIO_Struct_TypeDef gpioPB5;
@@ -36,9 +36,9 @@ void Callback2(){ //EXPERIMENTAL : Empeche des gros appels de courant
 	
 	controllerData = (int) ((signed char) controllerData);
 	diff = controllerData - vitesseRotationPlateau;
-	if (diff > ACCELMAX) vitesseRotationPlateau=ACCELMAX; //si il veut accelerer trop vite //see #define
-	else if (diff < -ACCELMAX) vitesseRotationPlateau=-ACCELMAX;
-	else vitesseRotationPlateau = diff;
+	if (diff > ACCELMAX) vitesseRotationPlateau=vitesseRotationPlateau + ACCELMAX; //si il veut accelerer trop vite //see #define
+	else if (diff < -ACCELMAX) vitesseRotationPlateau= vitesseRotationPlateau - ACCELMAX;
+	else vitesseRotationPlateau = vitesseRotationPlateau + diff;
 			//Commande
 			if ( vitesseRotationPlateau <= 0)  {
 				MyGPIO_Set(GPIOB,5);
