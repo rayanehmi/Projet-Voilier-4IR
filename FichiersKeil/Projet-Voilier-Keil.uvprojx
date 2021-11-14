@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\FichiersCode\Drivers\Include</IncludePath>
+              <IncludePath>..\FichiersCode\Drivers\Include;..\FichiersCode\Fonctionnalites\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -417,6 +417,18 @@
         </Group>
         <Group>
           <GroupName>Fonctionnalites</GroupName>
+          <Files>
+            <File>
+              <FileName>cap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\cap.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyBordageAutomatique.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\MyBordageAutomatique.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -534,9 +546,9 @@
           <SimDlgDll>DARMSTM.DLL</SimDlgDll>
           <SimDlgDllArguments>-pSTM32F103RB</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments></TargetDllArguments>
-          <TargetDlgDll>TCM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pCM3</TargetDlgDllArguments>
+          <TargetDllArguments> -REMAP</TargetDllArguments>
+          <TargetDlgDll>TARMSTM.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pSTM32F103RB</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -837,6 +849,18 @@
         </Group>
         <Group>
           <GroupName>Fonctionnalites</GroupName>
+          <Files>
+            <File>
+              <FileName>cap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\cap.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyBordageAutomatique.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\MyBordageAutomatique.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
