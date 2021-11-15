@@ -11,8 +11,8 @@ void MySPI_Config(SPI_TypeDef * SPI) ;
 char MySPI_ReadWrite(SPI_TypeDef * SPI, char val) ; 
 
 // Fonctions de gestion du Chip Select 
-void MySPI_CS_On() ; 
+void MySPI_CS_On(void) ; 
 
-void MySPI_CS_Off() ; 
+void MySPI_CS_Off(void) ; 
 
 #endif

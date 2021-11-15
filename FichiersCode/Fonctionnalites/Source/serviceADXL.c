@@ -11,10 +11,10 @@ void MyADXL_SendData(uint8_t reg, uint8_t data) {
 	MySPI_CS_On() ; 
 	
 	// Envoi du register  
-	MySPI_ReadWrite(SPI, reg) ;
+	MySPI_ReadWrite(SPI1, reg) ;
 	
 	// Envoi des données 
-	MySPI_ReadWrite(SPI, data) ;
+	MySPI_ReadWrite(SPI1, data) ;
 	
 	// Mise à 0 du Chip Select 
 	MySPI_CS_Off() ; 

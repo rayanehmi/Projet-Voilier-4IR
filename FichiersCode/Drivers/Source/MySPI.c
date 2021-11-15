@@ -3,7 +3,7 @@
 #include "MyGPIO.h"
 
 // Structures des pin utilisées 
-MyGPIO_Struct_TypeDef GPIO_PA4_NSS = {GPIOA, 4, AltOut_Ppull} ;
+MyGPIO_Struct_TypeDef GPIO_PA4_NSS = {GPIOA, 4, Out_Ppull} ;
 MyGPIO_Struct_TypeDef GPIO_PA5_SCK = {GPIOA, 5, AltOut_Ppull} ;
 MyGPIO_Struct_TypeDef GPIO_PA6_MISO = {GPIOA, 6, In_PullDown} ;
 MyGPIO_Struct_TypeDef GPIO_PA7_MOSI = {GPIOA, 7, AltOut_Ppull} ;
@@ -19,7 +19,7 @@ void MySPI_Config(SPI_TypeDef * SPI) {
 	// fSCLK/16 pour avoir inferieur a 5Mhz limite du ADXL345
 	SPI->CR1 |= 0x1 << 3 ; 
 	SPI->CR1 |= 0x1 << 4 ; 
-	SPI->CR1 |= 0x0 << 5 ; 
+	SPI->CR1 |= 0x1 << 5 ; 
 	
 	// Choisir bits CPOL et CPHA pour définir le mode de transfert de données 
 	// Fonctionnement de l'ADXL en CPOL=1 et CPHA=1
@@ -72,9 +72,9 @@ char MySPI_ReadWrite(SPI_TypeDef * SPI, char data) {
 
 // Fonctions de gestion du Chip Select 
 void MySPI_CS_On() {
-	MyGPIO_Set(GPIOA, 4) ; 
+	MyGPIO_Reset(GPIOA, 4) ; 
 }
 
 void MySPI_CS_Off() {
-	MyGPIO_Reset(GPIOA, 4) ; 
+	MyGPIO_Set(GPIOA, 4) ; 
 }
