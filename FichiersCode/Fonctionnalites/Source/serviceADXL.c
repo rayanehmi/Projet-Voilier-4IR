@@ -5,6 +5,23 @@
 uint8_t reg ; 
 uint8_t data ; 
 
+void MyADXL_SendData(uint8_t reg, uint8_t data) {
+	
+	// Mise à 1 du Chip Select 
+	MySPI_CS_On() ; 
+	
+	// Envoi du register  
+	MySPI_ReadWrite(SPI, reg) ;
+	
+	// Envoi des données 
+	MySPI_ReadWrite(SPI, data) ;
+	
+	// Mise à 0 du Chip Select 
+	MySPI_CS_Off() ; 
+}
+
+
+	
 void MyADXL_Config(SPI_TypeDef * SPI) {
 	
 	// Construction de la trame à envoyer 
@@ -16,17 +33,8 @@ void MyADXL_Config(SPI_TypeDef * SPI) {
 	// Data à envoyer 
 	data = 0x0 ; 
 	
-	// Mise à 1 du Chip Select 
-	MySPI_CS_On ; 
-	
-	// Envoi du register  
-	MySPI_ReadWrite(SPI, reg) ;
-	
 	// Envoi des données 
-	MySPI_ReadWrite(SPI, data) ;
-	
-	// Mise à 0 du Chip Select 
-	MySPI_CS_Off ; 
+	MyADXL_SendData(reg, data) ; 
 	
 	
 	
@@ -41,16 +49,7 @@ void MyADXL_Config(SPI_TypeDef * SPI) {
 	// Data à envoyer 
 	data = 0x1 ; 
 	
-		// Mise à 1 du Chip Select 
-	MySPI_CS_On ; 
-	
-	// Envoi du register  
-	MySPI_ReadWrite(SPI, reg) ;
-	
 	// Envoi des données 
-	MySPI_ReadWrite(SPI, data) ;
-	
-	// Mise à 0 du Chip Select 
-	MySPI_CS_Off ; 
+	MyADXL_SendData(reg, data) ; 
 }
 
