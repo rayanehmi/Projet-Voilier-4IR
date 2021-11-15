@@ -8,13 +8,12 @@ MyUART_Struct_TypeDef uart;
 MyGPIO_Struct_TypeDef gpioPB8; //PWM plateau
 MyTimer_Struct_TypeDef tim4_chan3;
 MyGPIO_Struct_TypeDef gpioPB5; //sens plateau
-MyGPIO_Struct_TypeDef gpioPA2; //batterie
-MyGPIO_Struct_TypeDef gpioPA3; //////////////////////////////batterie AFAC
+//MyGPIO_Struct_TypeDef gpioPA2; //batterie
 MyTimer_Struct_TypeDef tim4_chan4;
 
 char controllerData;
 int vitesseRotationPlateau =0;
-int batterie; int compteurBatterie;
+//int batterie; int compteurBatterie;
 
 void Callback(){
 	controllerData = MyUART_GetChar(uart.UART);
@@ -34,29 +33,6 @@ void Callback(){
 				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
 			}
 }
-
-/*
-int diff;
-void Callback2(){ //EXPERIMENTAL : Empeche des gros appels de courant
-	controllerData = MyUART_GetChar(uart.UART);
-	
-	controllerData = (int) ((signed char) controllerData);
-	diff = controllerData - vitesseRotationPlateau;
-	if (diff > ACCELMAX) vitesseRotationPlateau=vitesseRotationPlateau + ACCELMAX; //si il veut accelerer trop vite //see #define
-	else if (diff < -ACCELMAX) vitesseRotationPlateau= vitesseRotationPlateau - ACCELMAX;
-	else vitesseRotationPlateau = vitesseRotationPlateau + diff;
-			//Commande
-			if ( vitesseRotationPlateau <= 0)  {
-				MyGPIO_Set(GPIOB,5);
-				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
-			}
-			else {
-				MyGPIO_Reset(GPIOB,5);
-				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
-			}
-		}
-		
-		*/
 		
 void interruptTimer(){ 
 	
@@ -82,15 +58,12 @@ int main(void){
 	uart.UART = USART1;
 	uart.UART_BaudRate = 9600;
 	
+	/*
 	//PA1
 	gpioPA2.GPIO = GPIOA;
 	gpioPA2.GPIO_Pin = 2;
 	gpioPA2.GPIO_Conf = In_Analog;
-	
-	/////////////////////////////////////PA3 : AFAC (partie tests batterie)
-	gpioPA3.GPIO = GPIOA;
-	gpioPA3.GPIO_Pin = 3;
-	gpioPA3.GPIO_Conf = Out_Ppull;
+	*/
 	
 	//PB8
 	gpioPB8.GPIO = GPIOB;
@@ -124,7 +97,6 @@ int main(void){
 	//MyUART_PutStr(uart.UART, "ssstringgg");
 	MyGPIO_Init(&gpioPB8);
 	MyGPIO_Init(&gpioPB5);
-	MyGPIO_Init(&gpioPA3);
 	MyGPIO_Set(GPIOA, 3); ////////////////////////////AFAC
 	
 	//TIM4
