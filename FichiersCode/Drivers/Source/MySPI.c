@@ -16,7 +16,7 @@ void MySPI_Config(SPI_TypeDef * SPI) {
 	RCC->APB2ENR |= RCC_APB2ENR_SPI1EN ; 
 	
 	// SPI_CR1 -> 3 4 5 bits pour définir serial clock baud rate 
-	// fSCLK/16 pour avoir inferieur a 5Mhz limite du ADXL345
+	// fSCLK pour avoir inferieur a 5Mhz limite du ADXL345
 	SPI->CR1 |= 0x1 << 3 ; 
 	SPI->CR1 |= 0x1 << 4 ; 
 	SPI->CR1 |= 0x1 << 5 ; 
