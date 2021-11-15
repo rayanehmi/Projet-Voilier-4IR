@@ -1,75 +1,55 @@
-//à faire : meilleure conversion hexa->dec , tourner dans l'autre sens
-
 #include "stm32f10x.h"
-#include "MyUART.h"
 #include "MyGPIO.h"
 #include "MyTimer.h"
 
-MyGPIO_Struct_TypeDef gpioPB8;
-MyGPIO_Struct_TypeDef gpioPB5;
-MyTimer_Struct_TypeDef tim4_chan3;
-MyUART_Struct_TypeDef uart;
-char controllerData;
-int vitesseRotationPlateau =0;
-
-void Callback(){
-	controllerData = MyUART_GetChar(uart.UART);
-	
-	
-	/* Starts listening on USART1 and sends rotation commands */
-	/* For the moment, PWM uses TIM4-chan3(PB8) and rotationDirection uses PB5 */
-
-		//Traitement
-			vitesseRotationPlateau = (int) ((signed char)controllerData);
-			//Commande
-			if ( vitesseRotationPlateau <= 0)  {
-				MyGPIO_Set(GPIOB,5);
-				setCycle_PWM(TIM4,3,(-1)*vitesseRotationPlateau);
-			}
-			else {
-				MyGPIO_Reset(GPIOB,5);
-				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
-			}
-}
-
+MyTimer_Struct_TypeDef timer;
+MyGPIO_Struct_TypeDef gpioA, gpioB;
 
 int main(void){
+	timer.TimId = TIM2;
+	timer.ARR = 1435;
+	timer.PSC = 1;
+	MyTimer_Base_Init(&timer);
 	
-	//UART1
-	uart.UART = USART1;
-	uart.UART_BaudRate = 9600;
+	// CC2S ET CC3S
+	timer.TimId->CCMR1 &=~ TIM_CCMR1_CC1S;
+	timer.TimId->CCMR1 &=~ TIM_CCMR1_CC2S;
+	timer.TimId->CCMR1 |= TIM_CCMR1_CC1S_0;
+	timer.TimId->CCMR1 |= TIM_CCMR1_CC2S_0;
 	
-	//PB8
-	gpioPB8.GPIO = GPIOB;
-	gpioPB8.GPIO_Pin = 8;
-	gpioPB8.GPIO_Conf = AltOut_Ppull;
+	// IC2F ET IC3F
+	timer.TimId->CCMR1 &=~ TIM_CCMR1_IC1F;
+	timer.TimId->CCMR2 &=~ TIM_CCMR1_IC2F;
 	
-	//PB5
-	gpioPB5.GPIO = GPIOB;
-	gpioPB5.GPIO_Pin = 5;
-	gpioPB5.GPIO_Conf = Out_Ppull;
+	// CC2P ET CC3P
+	timer.TimId->CCER &=~ TIM_CCER_CC1P;
+	timer.TimId->CCER &=~ TIM_CCER_CC2P;
 	
-	//TIM4 channel 3
-	tim4_chan3.TimId=TIM4;
-		tim4_chan3.ARR=100-1;
-			tim4_chan3.PSC=1-1;
+	// CC2NP ET CC3NP
+	timer.TimId->CCER &=~ TIM_CCER_CC1NP;
+	timer.TimId->CCER &=~ TIM_CCER_CC2NP;
 	
-	//Init
-	MyUART_Init(&uart);
-	MyUART_ActiveIT(uart.UART, 1, Callback); 
-	//MyUART_PutStr(uart.UART, "ssstringgg");
-	MyGPIO_Init(&gpioPB8);
-	MyGPIO_Init(&gpioPB5);
-	MyTimer_Base_Init(&tim4_chan3);
-	MyTimer_PWM(TIM4,3);
-
-	MyTimer_Base_Start(TIM4);
+	// SMS
+	timer.TimId->SMCR &=~ (TIM_SMCR_SMS);
+	timer.TimId->SMCR |= TIM_SMCR_SMS_0;
+	timer.TimId->SMCR |= TIM_SMCR_SMS_1;
 	
-	/* Partie rotation plateau*/
+	// CEN
+	//timer.Timer->CR1 |= TIM_CR1_CEN;
 	
-
-	while(1){
-			
-	}
 	
+	gpioA.GPIO = GPIOA;
+	gpioA.GPIO_Pin = 0;
+	gpioA.GPIO_Conf = In_PullDown;
+	
+	gpioB.GPIO = GPIOA;
+	gpioB.GPIO_Pin = 1;
+	gpioB.GPIO_Conf = In_PullDown;
+	
+	MyGPIO_Init(&gpioA);
+	MyGPIO_Init(&gpioB);
+	
+	MyTimer_Base_Start(timer.TimId);
+	
+	while(1);
 }
