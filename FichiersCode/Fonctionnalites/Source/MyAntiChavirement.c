@@ -1,0 +1,6 @@
+#include "MyBordageAutomatique.h"
+#include "stm32f10x.h"
+#include "MyTimer.h"
+#include "MyGPIO.h"
+#include "MySPI.h"
+#include "serviceADXL.h"
