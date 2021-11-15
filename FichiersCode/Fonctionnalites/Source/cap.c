@@ -1,3 +1,4 @@
+#include "cap.h"
 #include "MyTimer.h"
 #include "MyGPIO.h"
 
