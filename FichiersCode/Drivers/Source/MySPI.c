@@ -64,7 +64,9 @@ char MySPI_ReadWrite(SPI_TypeDef * SPI, char data) {
 	while ((SPI->SR&SPI_SR_RXNE)== 0) {
 		// Tant qu'il n'y a rien à lire, on attend
 	}
-	a=SPI_DR_DR ; 
+	a=SPI->DR ; 
 	
 	return a ; 
 }
+
+
