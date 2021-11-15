@@ -35,6 +35,7 @@ void Callback(){
 			}
 }
 
+/*
 int diff;
 void Callback2(){ //EXPERIMENTAL : Empeche des gros appels de courant
 	controllerData = MyUART_GetChar(uart.UART);
@@ -54,6 +55,9 @@ void Callback2(){ //EXPERIMENTAL : Empeche des gros appels de courant
 				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
 			}
 		}
+		
+		*/
+		
 void interruptTimer(){ 
 	
 	//envoi message toutes les 3 secondes
@@ -116,7 +120,7 @@ int main(void){
 	
 	//Init
 	MyUART_Init(&uart);
-	MyUART_ActiveIT(uart.UART, 1, Callback2); 
+	MyUART_ActiveIT(uart.UART, 1, Callback); 
 	//MyUART_PutStr(uart.UART, "ssstringgg");
 	MyGPIO_Init(&gpioPB8);
 	MyGPIO_Init(&gpioPB5);
