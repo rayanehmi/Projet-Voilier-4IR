@@ -70,3 +70,11 @@ char MySPI_ReadWrite(SPI_TypeDef * SPI, char data) {
 }
 
 
+// Fonctions de gestion du Chip Select 
+void MySPI_CS_On() {
+	MyGPIO_Set(GPIOA, 4) ; 
+}
+
+void MySPI_CS_Off() {
+	MyGPIO_Reset(GPIOA, 4) ; 
+}
