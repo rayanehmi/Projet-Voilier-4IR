@@ -1,5 +1,5 @@
 #include "stm32f10x.h"
-#include "Driver_ADC.h"
+#include "MyADC.h"
 
 // Fonction d'initialisation 
 void MyADC_Init(ADC_TypeDef * ADC, float sampleTime, char channel) {
