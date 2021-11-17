@@ -20,6 +20,14 @@ Section Cross References
     myuart.o(i.MyUART_Init) refers to mygpio.o(i.MyGPIO_Init) for MyGPIO_Init
     myuart.o(i.USART1_IRQHandler) refers to myuart.o(.data) for pFuncUART1
     myuart.o(i.USART3_IRQHandler) refers to myuart.o(.data) for pFuncUART3
+    cap.o(i.cap) refers to mytimer.o(i.MyTimer_PWM) for MyTimer_PWM
+    cap.o(i.cap) refers to mytimer.o(i.setCycle_PWM) for setCycle_PWM
+    cap.o(i.cap) refers to mygpio.o(i.MyGPIO_Set) for MyGPIO_Set
+    mybordageautomatique.o(i.MyBordageAutomatique_setup) refers to mytimer.o(i.MyTimer_Base_Init) for MyTimer_Base_Init
+    mybordageautomatique.o(i.MyBordageAutomatique_setup) refers to mytimer.o(i.MyTimer_Enable_EncoderMode) for MyTimer_Enable_EncoderMode
+    mybordageautomatique.o(i.MyBordageAutomatique_setup) refers to mygpio.o(i.MyGPIO_Init) for MyGPIO_Init
+    mybordageautomatique.o(i.MyBordageAutomatique_setup) refers to mytimer.o(i.MyTimer_Set_EncoderMode) for MyTimer_Set_EncoderMode
+    mybordageautomatique.o(i.MyBordageAutomatique_setup) refers to mybordageautomatique.o(.data) for timer
     startup_stm32f10x_md.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f10x_md.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f10x_md.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
@@ -238,10 +246,14 @@ Image Symbol Table
     ..\FichiersCode\Drivers\Source\MyGPIO.c  0x00000000   Number         0  mygpio.o ABSOLUTE
     ..\FichiersCode\Drivers\Source\MyTimer.c 0x00000000   Number         0  mytimer.o ABSOLUTE
     ..\FichiersCode\Drivers\Source\MyUART.c  0x00000000   Number         0  myuart.o ABSOLUTE
+    ..\FichiersCode\Fonctionnalites\Source\MyBordageAutomatique.c 0x00000000   Number         0  mybordageautomatique.o ABSOLUTE
+    ..\FichiersCode\Fonctionnalites\Source\cap.c 0x00000000   Number         0  cap.o ABSOLUTE
     ..\FichiersCode\Sources\main.c           0x00000000   Number         0  main.o ABSOLUTE
     ..\\FichiersCode\\Drivers\\Source\\MyGPIO.c 0x00000000   Number         0  mygpio.o ABSOLUTE
     ..\\FichiersCode\\Drivers\\Source\\MyTimer.c 0x00000000   Number         0  mytimer.o ABSOLUTE
     ..\\FichiersCode\\Drivers\\Source\\MyUART.c 0x00000000   Number         0  myuart.o ABSOLUTE
+    ..\\FichiersCode\\Fonctionnalites\\Source\\MyBordageAutomatique.c 0x00000000   Number         0  mybordageautomatique.o ABSOLUTE
+    ..\\FichiersCode\\Fonctionnalites\\Source\\cap.c 0x00000000   Number         0  cap.o ABSOLUTE
     ..\\FichiersCode\\Sources\\main.c        0x00000000   Number         0  main.o ABSOLUTE
     RTE\Device\STM32F103RB\startup_stm32f10x_md.s 0x00000000   Number         0  startup_stm32f10x_md.o ABSOLUTE
     RTE\Device\STM32F103RB\system_stm32f10x.c 0x00000000   Number         0  system_stm32f10x.o ABSOLUTE

@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\FichiersCode\Drivers\Include</IncludePath>
+              <IncludePath>..\FichiersCode\Drivers\Include;..\FichiersCode\Fonctionnalites\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -412,6 +412,18 @@
         </Group>
         <Group>
           <GroupName>Fonctionnalites</GroupName>
+          <Files>
+            <File>
+              <FileName>cap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\cap.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyBordageAutomatique.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\MyBordageAutomatique.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -827,6 +839,18 @@
         </Group>
         <Group>
           <GroupName>Fonctionnalites</GroupName>
+          <Files>
+            <File>
+              <FileName>cap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\cap.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyBordageAutomatique.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FichiersCode\Fonctionnalites\Source\MyBordageAutomatique.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

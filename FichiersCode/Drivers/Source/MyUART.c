@@ -41,7 +41,7 @@ void MyUART_ActiveIT(USART_TypeDef * UART , char Prio , void (*IT_function)(void
 		  NVIC_EnableIRQ(USART1_IRQn);
       NVIC_SetPriority(USART1_IRQn,Prio);
 			pFuncUART1 = IT_function;
-	}else if(UART == USART3){
+	}else if(UART == USART3){	
 			NVIC_EnableIRQ(USART3_IRQn);
       NVIC_SetPriority(USART3_IRQn,Prio);
 		  pFuncUART3 = IT_function;

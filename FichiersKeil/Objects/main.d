@@ -9,3 +9,4 @@
 .\objects\main.o: C:\Users\lopez\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h
 .\objects\main.o: ..\FichiersCode\Drivers\Include\MyGPIO.h
 .\objects\main.o: ..\FichiersCode\Drivers\Include\MyTimer.h
+.\objects\main.o: ..\FichiersCode\Drivers\Include\MyGPIO.h
