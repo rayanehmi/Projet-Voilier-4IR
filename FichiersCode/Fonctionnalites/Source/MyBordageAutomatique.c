@@ -4,6 +4,12 @@
 MyTimer_Struct_TypeDef timer;
 MyGPIO_Struct_TypeDef gpio;
 
+int count = 0;
+void Callback(){
+	count++;
+}
+
+
 void MyBordageAutomatique_setup(void){
 	// Configuration of TIMER2
 	timer.TimId = TIM2;
