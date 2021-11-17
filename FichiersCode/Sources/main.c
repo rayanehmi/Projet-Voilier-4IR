@@ -2,7 +2,7 @@
 #include "MyUART.h"
 #include "MyGPIO.h"
 #include "MyTimer.h"
-#define ACCELMAX 7 //70% par sec
+
 
 MyUART_Struct_TypeDef uart;
 MyGPIO_Struct_TypeDef gpioPB8; //PWM plateau
@@ -33,11 +33,12 @@ void Callback(){
 				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
 			}
 }
-		
+
+
 void interruptTimer(){ 
 	
 	//envoi message toutes les 3 secondes
-	MyUART_PutStr(uart.UART, "3 secondes sont passees.\n");
+	//MyUART_PutStr(uart.UART, "3 secondes sont passees.\n");
 	
 	/*
 	//interruption ADC toutes les 30 secondes
@@ -86,10 +87,12 @@ int main(void){
 	tim4_chan3.ARR=100-1;
 	tim4_chan3.PSC=1-1;
 	
-	//TIM4 channel 4
+	/*
+	//TIM3 channel 4
 	tim4_chan3.TimId=TIM4;
 	tim4_chan3.ARR=14697-1;
 	tim4_chan3.PSC=14697-1;//freq : 0.333Hz (1 toutes les 3 secondes)
+	*/
 	
 	//Init
 	MyUART_Init(&uart);
