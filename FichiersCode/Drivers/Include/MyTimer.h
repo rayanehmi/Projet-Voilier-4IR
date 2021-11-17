@@ -47,6 +47,7 @@ void MyTimer_ActiveIT(TIM_TypeDef * Timer, char Prio, void (*IT_function)(void))
 void MyTimer_PWM(TIM_TypeDef * Timer, char Channel);
 
 void setCycle_PWM(TIM_TypeDef * Timer, char Channel, int cycle) ;
+void setCycle_PWM_1000(TIM_TypeDef * Timer, char Channel, int cycle) ;
 
 #endif
 
