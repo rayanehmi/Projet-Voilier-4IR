@@ -1,29 +1,28 @@
-//à faire : meilleure conversion hexa->dec , tourner dans l'autre sens
-
 #include "stm32f10x.h"
 #include "MyUART.h"
 #include "MyGPIO.h"
 #include "MyTimer.h"
+#define ACCELMAX 7 //70% par sec
 
-MyGPIO_Struct_TypeDef gpioPB8;
-MyGPIO_Struct_TypeDef gpioPB5;
-MyGPIO_Struct_TypeDef gpioPB0;
-MyTimer_Struct_TypeDef tim4_chan3;
-MyTimer_Struct_TypeDef tim3_chan3;
 MyUART_Struct_TypeDef uart;
+MyGPIO_Struct_TypeDef gpioPB8; //PWM plateau
+MyTimer_Struct_TypeDef tim4_chan3;
+MyGPIO_Struct_TypeDef gpioPB5; //sens plateau
+//MyGPIO_Struct_TypeDef gpioPA2; //batterie
+MyTimer_Struct_TypeDef tim4_chan4;
+
 char controllerData;
-int cycleMAX = 0;
 int vitesseRotationPlateau =0;
+//int batterie; int compteurBatterie;
 
 void Callback(){
 	controllerData = MyUART_GetChar(uart.UART);
-	
 	
 	/* Starts listening on USART1 and sends rotation commands */
 	/* For the moment, PWM uses TIM4-chan3(PB8) and rotationDirection uses PB5 */
 
 		//Traitement
-			vitesseRotationPlateau = (int) ((signed char)controllerData);
+	vitesseRotationPlateau = (int) ((signed char)controllerData);
 			//Commande
 			if ( vitesseRotationPlateau <= 0)  {
 				MyGPIO_Set(GPIOB,5);
@@ -34,17 +33,37 @@ void Callback(){
 				setCycle_PWM(TIM4,3,vitesseRotationPlateau);
 			}
 }
-
-int converterTetha(int t){
-	return 20 + ((t * 80)/90);
+		
+void interruptTimer(){ 
+	
+	//envoi message toutes les 3 secondes
+	MyUART_PutStr(uart.UART, "3 secondes sont passees.\n");
+	
+	/*
+	//interruption ADC toutes les 30 secondes
+	compteurBatterie++;
+	
+	if (compteurBatterie>=2){ //Verif batterie toutes les 3 * 10 = 30 secondes
+		compteurBatterie = 0;
+		batterie = MyADC_Get(ADC2) * 3.3 * coefPont / 1024; //see #define
+		if (batterie < BTV * 100) { //Battery Voltage Threshold (see #define)
+			MyUART_PutStr(uart.UART, "Alerte : Batterie faible.\n");
+		}
+	}*/
 }
-
 
 int main(void){
 	
 	//UART1
 	uart.UART = USART1;
 	uart.UART_BaudRate = 9600;
+	
+	/*
+	//PA1
+	gpioPA2.GPIO = GPIOA;
+	gpioPA2.GPIO_Pin = 2;
+	gpioPA2.GPIO_Conf = In_Analog;
+	*/
 	
 	//PB8
 	gpioPB8.GPIO = GPIOB;
@@ -56,21 +75,21 @@ int main(void){
 	gpioPB5.GPIO_Pin = 5;
 	gpioPB5.GPIO_Conf = Out_Ppull;
 	
-	//PB0
-	gpioPB0.GPIO = GPIOB;
-	gpioPB0.GPIO_Pin = 0;
-	gpioPB0.GPIO_Conf = AltOut_Ppull;
-	
+	/*
+	//ADC2
+	MyADC_Init(ADC2,71.5,0);
+	MyADC_Start(ADC2);
+	*/
 	
 	//TIM4 channel 3
 	tim4_chan3.TimId=TIM4;
 	tim4_chan3.ARR=100-1;
 	tim4_chan3.PSC=1-1;
-			
-	//TIM3 channel 3
-	tim3_chan3.TimId=TIM3;
-	tim3_chan3.ARR=1200-1;
-	tim3_chan3.PSC=1200-1;
+	
+	//TIM4 channel 4
+	tim4_chan3.TimId=TIM4;
+	tim4_chan3.ARR=14697-1;
+	tim4_chan3.PSC=14697-1;//freq : 0.333Hz (1 toutes les 3 secondes)
 	
 	//Init
 	MyUART_Init(&uart);
@@ -78,20 +97,19 @@ int main(void){
 	//MyUART_PutStr(uart.UART, "ssstringgg");
 	MyGPIO_Init(&gpioPB8);
 	MyGPIO_Init(&gpioPB5);
-	MyGPIO_Init(&gpioPB0);
-	MyTimer_Base_Init(&tim4_chan3);
-	MyTimer_Base_Init(&tim3_chan3);
-	MyTimer_PWM(TIM3,3);
-	MyTimer_PWM(TIM4,3);
-	MyTimer_Base_Start(TIM3);
-	MyTimer_Base_Start(TIM4);
-	setCycle_PWM_1000(TIM3,3,converterTetha(cycleMAX));
-	/* Partie rotation plateau*/
+	MyGPIO_Set(GPIOA, 3); ////////////////////////////AFAC
 	
+	//TIM4
+	MyTimer_Base_Init(&tim4_chan3);
+	MyTimer_PWM(TIM4,3);
 
+	MyTimer_Base_Init(&tim4_chan4);
+	MyTimer_ActiveIT(TIM4,5,interruptTimer);
+	MyTimer_Base_Start(TIM4);
+
+	
 	while(1){
-		int temp = converterTetha(cycleMAX);
-		setCycle_PWM_1000(TIM3,3,temp);
+			
 	}
 	
 }

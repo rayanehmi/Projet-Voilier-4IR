@@ -191,16 +191,44 @@ void MyTimer_Base_Init(MyTimer_Struct_TypeDef * Timer){
 		}
 }
 	
-void setCycle_PWM_1000(TIM_TypeDef * Timer, char Channel, int cycle) {
-		
-		if (Channel == 1) {
-			Timer->CCR1 = ((Timer->ARR + 1)* cycle)/1000 ; 
-		} else if (Channel==2) {
-			Timer->CCR2 = ((Timer->ARR + 1)* cycle)/1000 ; 
-		} else if (Channel==3) {
-			Timer->CCR3 = ((Timer->ARR + 1)* cycle)/1000 ; 
-		} else if (Channel==4) {
-			Timer->CCR4 = ((Timer->ARR + 1)* cycle)/1000 ; 
-		}
+// Enable Encoder Mode in the Timer
+void MyTimer_Enable_EncoderMode(TIM_TypeDef* Timer){
+	
+	// SMS 011 MODE both TI1FP1 and TI2FP2 edges
+	Timer->SMCR &=~ (TIM_SMCR_SMS);
+	Timer->SMCR |= TIM_SMCR_SMS_0;
+	Timer->SMCR |= TIM_SMCR_SMS_1;
 }
 
+// Set Encoder Mode in any Channel of the Timer
+void MyTimer_Set_EncoderMode(TIM_TypeDef * Timer, char Channel){
+	switch(Channel){
+		case 1:
+			Timer->CCMR1 |= TIM_CCMR1_CC1S;
+			Timer->CCMR1 &=~ TIM_CCMR1_IC1F;
+			Timer->CCER &=~ TIM_CCER_CC1P;
+			Timer->CCER &=~ TIM_CCER_CC1NP;
+			break;
+		case 2:
+			Timer->CCMR1 |= TIM_CCMR1_CC2S;
+			Timer->CCMR1 &=~ TIM_CCMR1_IC2F;
+			Timer->CCER &=~ TIM_CCER_CC2P;
+			Timer->CCER &=~ TIM_CCER_CC2NP;
+			break;
+		case 3:
+			Timer->CCMR2 |= TIM_CCMR2_CC3S;
+			Timer->CCMR2 &=~ TIM_CCMR2_IC3F;
+			Timer->CCER &=~ TIM_CCER_CC3P;
+			Timer->CCER &=~ TIM_CCER_CC3NP;
+			break;
+		case 4:
+			Timer->CCMR2 |= TIM_CCMR2_CC4S;
+			Timer->CCMR2 &=~ TIM_CCMR2_IC4F;
+			Timer->CCER &=~ TIM_CCER_CC4P;
+			Timer->CCER &=~ TIM_CCER_CC4NP;
+			break;
+		default:
+			break;
+	}
+
+}
