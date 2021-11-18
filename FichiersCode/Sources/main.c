@@ -5,18 +5,23 @@
 #include "MyADC.h"
 #define coefPont 2
 #define BTV 1 
+#define servoMIN 10
+#define servoMAX 94
 
 MyUART_Struct_TypeDef uart;
 MyGPIO_Struct_TypeDef gpioPB8; //PWM plateau
 MyTimer_Struct_TypeDef tim4_chan3;
 MyGPIO_Struct_TypeDef gpioPB5; //sens plateau
+MyGPIO_Struct_TypeDef gpioPB0; //PWM Servo
 MyGPIO_Struct_TypeDef gpioPA2; //batterie (PA2)
 MyTimer_Struct_TypeDef tim2_chan4;
+MyTimer_Struct_TypeDef tim3_chan3; //Servo PWM
 
 char controllerData;
 int vitesseRotationPlateau =0;
 int batterie; int compteurBatterie;
 int compteur3s;
+int servoPWM = 0;
 
 void Callback(){
 	controllerData = MyUART_GetChar(uart.UART);
@@ -49,13 +54,28 @@ void interruptTimer(){
 	
 	//interruption ADC toutes les 30 secondes
 	compteurBatterie++;
-	if (compteurBatterie>=(5*30)){ //Verif batterie toutes les 30 secondes
+	if (compteurBatterie>=(5)){ //Verif batterie toutes les 30 secondes
 		compteurBatterie = 0;
 		batterie = MyADC_Get(ADC2) * 3.3 * coefPont / 1024; //see #define
 		if (batterie < BTV * 100) { //Battery Voltage Threshold (see #define)
 			MyUART_PutStr(uart.UART, "Alerte : Batterie faible.\n");
 		}
 	}
+}
+
+int girouetteToAngle (int a){
+	return (a * 360) / 1440;
+}
+
+int angleToTheta (int a){
+	if (a < 45) return 0;
+	else return ( ( (a - 45) * 90 ) / 135 );
+}
+
+int thetaToPWM (int t){
+	// f(x) = a x + b
+	// a = (servoMIN - servoMAX) / 90 ; b = servoMAX
+	return ( t * (servoMIN - servoMAX) / 90 ) + servoMAX;
 }
 
 int main(void){
@@ -70,6 +90,10 @@ int main(void){
 	gpioPA2.GPIO_Pin = 2;
 	gpioPA2.GPIO_Conf = In_Analog;
 	
+		//PB0
+	gpioPB0.GPIO = GPIOB;
+	gpioPB0.GPIO_Pin = 0;
+	gpioPB0.GPIO_Conf = AltOut_Ppull;
 	
 	//PB8
 	gpioPB8.GPIO = GPIOB;
@@ -92,6 +116,10 @@ int main(void){
 	tim4_chan3.ARR=100-1;
 	tim4_chan3.PSC=1-1;
 	
+	//TIM3 channel 3
+	tim3_chan3.TimId=TIM3;
+	tim3_chan3.ARR=1000-1;
+	tim3_chan3.PSC=1440-1;//freq : 50Hz (période : 20ms)
 	
 	//TIM2 channel 4
 	tim2_chan4.TimId=TIM2;
@@ -104,21 +132,26 @@ int main(void){
 	MyUART_ActiveIT(uart.UART, 1, Callback); 
 	MyGPIO_Init(&gpioPB8);
 	MyGPIO_Init(&gpioPB5);
-	MyGPIO_Set(GPIOA, 3); ////////////////////////////AFAC
+	MyGPIO_Init(&gpioPB0);
 	
 	//TIM4
 	MyTimer_Base_Init(&tim4_chan3);
 	MyTimer_PWM(TIM4,3);
 	MyTimer_Base_Start(TIM4);
 	
+	//TIM3
+	MyTimer_Base_Init(&tim3_chan3);
+	MyTimer_PWM(TIM3,3);
+	MyTimer_Base_Start(TIM3);
+	
 	//TIM2
 	MyTimer_Base_Init(&tim2_chan4);
-	MyTimer_ActiveIT(TIM2,5,interruptTimer);
+	MyTimer_ActiveIT(TIM2,5,interruptTimer); //5 = priority
 	MyTimer_Base_Start(TIM2);
 
 	
 	while(1){
-			
+			setCycle1000_PWM(TIM3,3,servoPWM);
 	}
 	
 }
