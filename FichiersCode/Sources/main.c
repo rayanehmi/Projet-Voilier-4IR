@@ -3,6 +3,7 @@
 #include "MyGPIO.h"
 #include "MyTimer.h"
 #include "MyADC.h"
+#include "MyBordageAutomatique.h"
 #define coefPont 2
 #define BTV 1 
 #define servoMIN 10
@@ -14,7 +15,6 @@ MyTimer_Struct_TypeDef tim4_chan3;
 MyGPIO_Struct_TypeDef gpioPB5; //sens plateau
 MyGPIO_Struct_TypeDef gpioPB0; //PWM Servo
 MyGPIO_Struct_TypeDef gpioPA2; //batterie (PA2)
-MyTimer_Struct_TypeDef tim2_chan4;
 MyTimer_Struct_TypeDef tim3_chan3; //Servo PWM
 
 char controllerData;
@@ -22,6 +22,8 @@ int vitesseRotationPlateau =0;
 int batterie; int compteurBatterie;
 int compteur3s;
 int servoPWM = 0;
+int alpha=0;
+int girouette = 0;
 
 void Callback(){
 	controllerData = MyUART_GetChar(uart.UART);
@@ -47,14 +49,14 @@ void interruptTimer(){
 	
 	//envoi message toutes les 3 secondes
 	compteur3s++;
-	if (compteur3s>=(5*3)){
+	if (compteur3s>=(5*3*10)){
 		compteur3s=0;
 		MyUART_PutStr(uart.UART, "3 secondes sont passees.\n");
 	}
 	
 	//interruption ADC toutes les 30 secondes
 	compteurBatterie++;
-	if (compteurBatterie>=(5)){ //Verif batterie toutes les 30 secondes
+	if (compteurBatterie>=(5*10)){ //Verif batterie toutes les 30 secondes
 		compteurBatterie = 0;
 		batterie = MyADC_Get(ADC2) * 3.3 * coefPont / 1024; //see #define
 		if (batterie < BTV * 100) { //Battery Voltage Threshold (see #define)
@@ -121,11 +123,6 @@ int main(void){
 	tim3_chan3.ARR=1000-1;
 	tim3_chan3.PSC=1440-1;//freq : 50Hz (période : 20ms)
 	
-	//TIM2 channel 4
-	tim2_chan4.TimId=TIM2;
-	tim2_chan4.ARR=3795-1;
-	tim2_chan4.PSC=3795-1;//freq : 5Hz (1 toutes les 0.2 secondes)
-	
 	
 	//Init
 	MyUART_Init(&uart);
@@ -141,17 +138,19 @@ int main(void){
 	
 	//TIM3
 	MyTimer_Base_Init(&tim3_chan3);
+	MyTimer_ActiveIT(TIM3,5,interruptTimer); //5 = priority
 	MyTimer_PWM(TIM3,3);
 	MyTimer_Base_Start(TIM3);
 	
-	//TIM2
-	MyTimer_Base_Init(&tim2_chan4);
-	MyTimer_ActiveIT(TIM2,5,interruptTimer); //5 = priority
-	MyTimer_Base_Start(TIM2);
+	MyBordageAutomatique_setup();
+	MyBordageAutomatique_start();
 
 	
 	while(1){
-			setCycle1000_PWM(TIM3,3,servoPWM);
+		girouette = (int) TIM2->CNT;
+		alpha = (girouette*360)/1440;
+		servoPWM = thetaToPWM (angleToTheta(alpha));
+		setCycle1000_PWM(TIM3,3,servoPWM);
 	}
 	
 }

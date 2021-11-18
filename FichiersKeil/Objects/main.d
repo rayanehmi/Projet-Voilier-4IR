@@ -12,3 +12,4 @@
 .\objects\main.o: ..\FichiersCode\Drivers\Include\MyTimer.h
 .\objects\main.o: ..\FichiersCode\Drivers\Include\MyADC.h
 .\objects\main.o: C:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm3.h
+.\objects\main.o: ..\FichiersCode\Fonctionnalites\Include\MyBordageAutomatique.h
