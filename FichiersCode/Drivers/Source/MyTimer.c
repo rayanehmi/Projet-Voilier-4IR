@@ -57,6 +57,8 @@ void MyTimer_Base_Init(MyTimer_Struct_TypeDef * Timer){
     if(TimId == TIM1){
   		NVIC_EnableIRQ(TIM1_UP_IRQn);
       NVIC_SetPriority(TIM1_UP_IRQn,Prio);
+			NVIC_EnableIRQ(TIM1_BRK_IRQn);
+      NVIC_SetPriority(TIM1_BRK_IRQn,Prio);
       pFuncTIM1 = IT_function;
   	} else if (TimId == TIM2){
   		NVIC_EnableIRQ(TIM2_IRQn);
@@ -86,6 +88,14 @@ void MyTimer_Base_Init(MyTimer_Struct_TypeDef * Timer){
 	
 	
 	  void TIM1_UP_IRQHandler(void){
+    // reset bit to close the interrupt request
+    TIM1->SR &= ~TIM_SR_UIF ; 
+    if(pFuncTIM1 != 0){
+      (*pFuncTIM1)();
+    }
+  }
+		
+	void TIM1_BRK_IRQHandler(void){
     // reset bit to close the interrupt request
     TIM1->SR &= ~TIM_SR_UIF ; 
     if(pFuncTIM1 != 0){
