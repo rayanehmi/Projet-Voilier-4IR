@@ -64,7 +64,7 @@ void interruptTimer(){
 		}
 	}
 }
-
+/*
 int girouetteToAngle (int a){
 	return (a * 360) / 1440;
 }
@@ -79,7 +79,7 @@ int thetaToPWM (int t){
 	// a = (servoMIN - servoMAX) / 90 ; b = servoMAX
 	return ( t * (servoMIN - servoMAX) / 90 ) + servoMAX;
 }
-
+*/
 int main(void){
 	
 	//UART1
@@ -147,10 +147,7 @@ int main(void){
 
 	
 	while(1){
-		girouette = (int) TIM2->CNT;
-		alpha = (girouette*360)/1440;
-		servoPWM = thetaToPWM (angleToTheta(alpha));
-		setCycle1000_PWM(TIM3,3,servoPWM);
+		
 	}
 	
 }
