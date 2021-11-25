@@ -5,7 +5,7 @@
 #include "MySPI.h"
 #include "serviceADXL.h"
 
-/*
+
 char compare(SPI_TypeDef * SPI){
 
 
@@ -18,14 +18,15 @@ char compare(SPI_TypeDef * SPI){
 
 	char res[4];
 
-	To read or write multiple bytes in a single transmission, the 
+	/* To read or write multiple bytes in a single transmission, the 
 	multiple-byte bit, located after the R/W bit in the first byte transfer 
 	(MB in Figure 37 to Figure 39), must be set. After the register 
 	addressing and the first byte of data, each subsequent set of clock 
 	pulses (eight clock pulses) causes the ADXL345 to point to the 
 	next register for a read or write. This shifting continues until the 
 	clock pulses cease and CS is deasserted.
-	*//*
+	*/
+	
 	MySPI_CS_On();
 	for(int i=0;i<4;i++) {
 		res[i]=MySPI_ReadWrite(SPI,req);
@@ -48,7 +49,7 @@ void antiChavirement(SPI_TypeDef * SPI){
 		// lacher les voiles
 	}
 	
-}*/
+}
 
-// 
+
 
