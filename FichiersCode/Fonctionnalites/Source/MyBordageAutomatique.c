@@ -26,7 +26,13 @@ void CallbackGirouette(){
 		int girouette = (int) TIM2->CNT;
 		int alpha = (girouette*360)/1440;
 		int servoPWM = thetaToPWM (angleToTheta(alpha));
+	
+		if(MyGPIO_Read(GPIOA, 8)){
+			TIM2->CNT &=~ (TIM_CNT_CNT);
+		}
 		setCycle1000_PWM(TIM3,3,servoPWM);
+	
+		
 }
 
 
@@ -56,8 +62,9 @@ void MyBordageAutomatique_setup(void){
 	gpio.GPIO_Pin = 1;
 	MyGPIO_Init(&gpio);
 	
-	//gpio.GPIO_Pin = 2;
-	//MyGPIO_Init(&gpio);
+	gpio.GPIO_Pin = 8;
+	gpio.GPIO_Conf = Out_Ppull;
+	MyGPIO_Init(&gpio);
 	
 	// Configuration Encoder Mode in this two channels
 	MyTimer_Set_EncoderMode(timer2.TimId, 1);
