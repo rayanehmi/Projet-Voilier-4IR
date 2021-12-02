@@ -36,7 +36,7 @@ void MyBordageAutomatique_setup(void){
 	timer1.ARR = 1440-1;
 	timer1.PSC = 100-1;
 	MyTimer_Base_Init(&timer1);
-	MyTimer_ActiveIT(timer1.TimId, 0, CallbackGirouette);
+	MyTimer_ActiveIT(timer1.TimId, 6, CallbackGirouette);
 	
 	// Configuration of TIMER2
 	timer2.TimId = TIM2;
